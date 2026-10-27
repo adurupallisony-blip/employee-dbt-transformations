@@ -1,0 +1,12 @@
+
+{{ config(materialized='table') }}
+
+SELECT
+    EMPLOYEE_ID,
+    EMPLOYEE_NAME,
+    DEPARTMENT,
+    EFFECTIVE_DATE,
+    ANNUAL_SALARY
+FROM {{ source('employee_source', 'EMPLOYEE_COMPENSATION') }}
+WHERE EMPLOYEE_ID IS NOT NULL
+  AND ANNUAL_SALARY >= 0

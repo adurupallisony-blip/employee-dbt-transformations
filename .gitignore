@@ -1,0 +1,16 @@
+
+target/
+dbt_packages/
+logs/
+.venv/
+models/example/
+
+# Environment variables and credentials
+.env
+.env.*
+!.env.example
+profiles.yml
+
+# Private keys
+*.pem
+*.key
