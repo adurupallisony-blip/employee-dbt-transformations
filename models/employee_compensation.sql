@@ -1,12 +1,19 @@
 
-{{ config(materialized='table') }}
+{{ config(
+    materialized='table',
+    alias='EMPLOYEE_SALARY_FILTERED'
+) }}
 
 SELECT
     EMPLOYEE_ID,
-    EMPLOYEE_NAME,
-    DEPARTMENT,
-    EFFECTIVE_DATE,
-    ANNUAL_SALARY
-FROM {{ source('employee_source', 'EMPLOYEE_COMPENSATION') }}
-WHERE EMPLOYEE_ID IS NOT NULL
-  AND ANNUAL_SALARY >= 0
+    FIRST_NAME,
+    LAST_NAME,
+    EMAIL,
+    JOB_ID,
+    SALARY
+
+FROM {{ source('employee_source', 'UPLOAD_EMPLOYEE_SALARY') }}
+
+WHERE
+    SALARY IS NOT NULL
+    AND SALARY > 50000
